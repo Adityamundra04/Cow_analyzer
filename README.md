@@ -8,7 +8,46 @@ alerts (e.g. mastitis remarks, sudden drops in yield).
 Everything runs **only on your computer** — no data leaves your machine.
 Records accumulate in a local file `cow_farm.db` (SQLite) each time you upload.
 
-## 1. Install (one-time)
+---
+
+## 🚀 Quick Start for Non-Technical Users
+
+**Want to get started in 2 minutes?** See **[EASY_SETUP.md](EASY_SETUP.md)** for simple copy-paste commands!
+
+### Super Easy Method (Windows):
+1. Clone this repository
+2. Double-click `setup_and_run.bat`
+3. Open browser to http://localhost:5000
+
+### Super Easy Method (Mac/Linux):
+1. Clone this repository
+2. Open Terminal, navigate to this folder
+3. Run: `bash setup_and_run.sh`
+4. Open browser to http://localhost:5000
+
+---
+
+## 📋 Complete Setup Instructions
+
+### Quick Clone and Run Commands
+
+**For Windows:**
+```cmd
+git clone https://github.com/Adityamundra04/Cow_analyzer.git
+cd Cow_analyzer
+setup_and_run.bat
+```
+
+**For Mac/Linux:**
+```bash
+git clone https://github.com/Adityamundra04/Cow_analyzer.git
+cd Cow_analyzer
+bash setup_and_run.sh
+```
+
+Then open your browser to **http://localhost:5000**
+
+### Manual Setup (if you prefer)
 
 You need **Python 3.9+** installed. Then, in this folder, run:
 
@@ -21,16 +60,17 @@ pip install -r requirements.txt
 ```bash
 python -m venv venv
 venv\Scripts\activate    # Windows
+source venv/bin/activate # Mac/Linux
 pip install -r requirements.txt
 ```
 
 ## 2. Run the app
 
 ```bash
-streamlit run app.py
+python app.py
 ```
 
-Your browser will open automatically at **http://localhost:8501**.
+Your browser should open automatically at **http://localhost:5000**.
 To stop the app, go back to the terminal and press `Ctrl+C`.
 Run the same command again any day to reopen it — your saved data stays in `cow_farm.db`.
 
