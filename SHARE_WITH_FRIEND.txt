@@ -1,0 +1,52 @@
+===============================================
+EASY COMMANDS FOR YOUR FRIEND
+===============================================
+
+Send your friend these commands to copy-paste:
+
+FOR WINDOWS USERS:
+------------------
+1. Open Command Prompt (Win+R, type "cmd", press Enter)
+2. Copy and paste these commands one by one:
+
+cd Desktop
+git clone https://github.com/Adityamundra04/Cow_analyzer.git
+cd Cow_analyzer
+setup_and_run.bat
+
+
+FOR MAC/LINUX USERS:
+--------------------
+1. Open Terminal
+2. Copy and paste these commands one by one:
+
+cd Desktop
+git clone https://github.com/Adityamundra04/Cow_analyzer.git
+cd Cow_analyzer
+bash setup_and_run.sh
+
+
+WHAT THIS DOES:
+---------------
+✓ Downloads the app to Desktop
+✓ Sets up Python environment automatically
+✓ Installs all required packages
+✓ Starts the app
+✓ Opens in browser at http://localhost:5000
+
+
+REQUIREMENTS:
+-------------
+- Python 3.9+ installed (https://www.python.org/downloads/)
+- Git installed (https://git-scm.com/downloads)
+
+
+TO RUN AGAIN LATER:
+-------------------
+Windows: Just double-click "setup_and_run.bat" in the Cow_analyzer folder
+Mac/Linux: Run "bash setup_and_run.sh" from the Cow_analyzer folder
+
+
+NEED HELP?
+----------
+See EASY_SETUP.md for detailed step-by-step instructions
