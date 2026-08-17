@@ -1,0 +1,62 @@
+-- Paste each of these into Power BI as a New Measure on the cow_data_export table --
+
+Total Milk =
+SUM(cow_data_export[total])
+
+Morning Total =
+SUM(cow_data_export[morning])
+
+Evening Total =
+SUM(cow_data_export[evening])
+
+Avg Milk Per Cow =
+DIVIDE([Total Milk], DISTINCTCOUNT(cow_data_export[cow_no]))
+
+Remark Count =
+CALCULATE(
+    COUNTROWS(cow_data_export),
+    cow_data_export[remark] <> BLANK()
+)
+
+-- 7-day rolling average of a cow's daily total, evaluated per row of date/cow --
+7-Day Avg Milk =
+AVERAGEX(
+    FILTER(
+        ALL(cow_data_export),
+        cow_data_export[cow_no] = MAX(cow_data_export[cow_no]) &&
+        cow_data_export[date] > MAX(cow_data_export[date]) - 7 &&
+        cow_data_export[date] <= MAX(cow_data_export[date])
+    ),
+    cow_data_export[total]
+)
+
+-- 15-day rolling average, same pattern --
+15-Day Avg Milk =
+AVERAGEX(
+    FILTER(
+        ALL(cow_data_export),
+        cow_data_export[cow_no] = MAX(cow_data_export[cow_no]) &&
+        cow_data_export[date] > MAX(cow_data_export[date]) - 15 &&
+        cow_data_export[date] <= MAX(cow_data_export[date])
+    ),
+    cow_data_export[total]
+)
+
+-- Flags a day where a cow's total fell below 70% of its own prior 7-day avg --
+Prev 7-Day Avg Milk =
+AVERAGEX(
+    FILTER(
+        ALL(cow_data_export),
+        cow_data_export[cow_no] = MAX(cow_data_export[cow_no]) &&
+        cow_data_export[date] > MAX(cow_data_export[date]) - 8 &&
+        cow_data_export[date] < MAX(cow_data_export[date])
+    ),
+    cow_data_export[total]
+)
+
+Yield Drop Flag =
+IF(
+    [Prev 7-Day Avg Milk] > 0 && [Total Milk] < [Prev 7-Day Avg Milk] * 0.7,
+    1,
+    0
+)
